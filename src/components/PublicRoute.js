@@ -1,9 +1,17 @@
 import { Route, Redirect } from 'react-router-dom';
 import { useProfile } from '../context/profile.context';
+import { Container, Loader } from 'rsuite';
 
 const PublicRoute = ({ children, ...routeProps }) => {
-    const profile = useProfile();
-    if (profile) {
+    const { profile, isLoading } = useProfile();
+    
+    if (isLoading && !profile) {
+        return <Container>
+            <Loader center vertical size="md" content="Loading" speed="slow" />
+            loading...
+        </Container>;
+    }
+    if (profile && !isLoading) {
         return <Redirect to="/" />;
     }
     return <Route {...routeProps}>{children}</Route>;
