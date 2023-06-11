@@ -1,9 +1,29 @@
+import { Button, Drawer } from "rsuite";
+import { useProfile } from "../../context/profile.context";
 
-const Dashboard = () => {
+const Dashboard = ({ onSignOut}) => {
+
+    const { profile } = useProfile();
     return (
-        <div>
-        <h1>Dashboard</h1>
-        </div>
+        <>
+            <Drawer.Header>
+                <Drawer.Title>
+                    Dashboard
+                </Drawer.Title>
+            </Drawer.Header>
+
+            <Drawer.Body>
+                <h3>Hey, its a dashboard</h3>
+                <h1> {profile.name }</h1>
+            </Drawer.Body>
+
+            <Drawer.Footer>
+                <Button block color="red" onClick={ onSignOut}>
+                    Sign out
+                </Button>
+            </Drawer.Footer>
+
+        </>
     );
 }
     
