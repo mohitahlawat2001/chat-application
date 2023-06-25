@@ -4,6 +4,7 @@ import { useMediaQuery } from "../../../misc/custom-hook";
 import { ButtonToolbar, Icon } from "rsuite";
 import { Link } from "react-router-dom";
 import RoomInfoBtnModal from "./RoomInfoBtnModal";
+import EditRoomBtnDrawer from "./EditRoomBtnDrawer";
 
 const Top = () => {
 
@@ -28,7 +29,7 @@ const Top = () => {
                 </h4>
                 
                 <ButtonToolbar className="ws-nowrap">
-                    todo
+                    <EditRoomBtnDrawer />   
                 </ButtonToolbar>
 
 
