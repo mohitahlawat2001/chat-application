@@ -2,7 +2,8 @@ import { Button, Icon, Modal , Form,Alert, FormGroup , ControlLabel , FormContro
 import { useModelState } from "../misc/custom-hook"
 import { useCallback, useState, useRef } from "react"
 import firebase from "firebase/app"
-import { database } from "../misc/firebase"
+import { database , auth} from "../misc/firebase"
+
 
 const model = Schema.Model({
     name: Schema.Types.StringType().isRequired('Chat name is required'),
@@ -33,9 +34,14 @@ const CreateRoomBtnModal = () => {
 
         setIsLoading(true);
 
+    
         const newRoomData = {
             ...formValue,
-            createdAt: firebase.database.ServerValue.TIMESTAMP
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+            admins: {
+                [auth.currentUser.uid]: true
+            }
+
         }
 
         try {
